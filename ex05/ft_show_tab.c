@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+struct	s_stock_str	*ft_strs_to_tab(int ac, char **av);
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -10,32 +12,35 @@ void	ft_putchar(char c)
 void	ft_putstr(char *str)
 {
 	while (*str)
-		write(1, str++, 1);
+	{
+		write(1, str, 1);
+		str++;
+	}
 }
 
 void	ft_putnbr(int nb)
 {
-	char c;
+	char	i;
 
 	if (nb == -2147483648)
 	{
-		ft_putnbr(nb / 10);
-		write(1, "8", 1);
+		write(1, "-2147483648", 11);
+		return;
 	}
-	else if (nb < 0)
+	if (nb < 0)
 	{
 		write(1, "-", 1);
-		ft_putnbr(-nb);
+		nb = -nb;
 	}
-	else if (nb >= 10)
+	if (nb >= 10)
 	{
 		ft_putnbr(nb / 10);
 		ft_putnbr(nb % 10);
 	}
 	else
 	{
-		c = nb + 48;
-		write(1, &c, 1);
+		i = nb + 48;
+		write(1, &i, 1);
 	}
 }
 
@@ -54,13 +59,4 @@ void	ft_show_tab(struct s_stock_str *par)
 		ft_putchar('\n');
 		i++;
 	}
-}
-
-int	main(void)
-{
-	char *av[3] = {4, "bbbb", "bbbb"};
-
-	t_stock_str aa;
-	aa ft_strs_to_tab(3, av);
-	
 }

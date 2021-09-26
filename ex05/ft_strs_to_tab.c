@@ -1,6 +1,6 @@
 #include "ft_stock_str.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 struct	s_stock_str	*ft_strs_to_tab(int ac, char **av);
 
 int	ft_strlen(char *str)
